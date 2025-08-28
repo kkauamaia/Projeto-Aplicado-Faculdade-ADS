@@ -1,0 +1,469 @@
+:root {
+    --primary-color: #ff9800; 
+    --secondary-color: #4caf50; 
+    --background-color: #fdf8e1; 
+    --text-color: #333;
+    --card-bg-color: #ffffff;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+#login-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: var(--card-bg-color);
+    padding: 3rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    max-width: 500px;
+    width: 90%;
+}
+
+.login-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+}
+
+.login-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.login-container p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.login-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.role-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.role-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--card-bg-color);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    box-shadow: var(--box-shadow);
+}
+
+#logo-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#logo {
+    width: 60px;
+    height: 60px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-grow: 1; 
+}
+
+.nav-btn {
+    padding: 0.6rem 1.2rem;
+    border: 2px solid var(--primary-color);
+    background-color: transparent;
+    color: var(--primary-color);
+    font-weight: 700;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#logout-btn {
+    border-color: #f44336;
+    color: #f44336;
+}
+#logout-btn:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.view.active {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+#intro {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#intro h2 {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+#pending-donations-container {
+    margin-bottom: 2rem;
+}
+
+#donation-area {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+#form-container, #dashboard-container, #donor-form-container, #donor-list-container, .report-card, #pending-donations-container, #donor-login-container, #donor-pledge-container, #donor-history-container {
+    background-color: var(--card-bg-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#donation-list, #donor-list, #pending-donation-list, #donor-donation-list {
+    list-style: none;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+#donation-list li, #donor-list li, #pending-donation-list li, #donor-donation-list li {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-left: 5px solid var(--primary-color);
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    word-break: break-word;
+    gap: 1rem;
+}
+
+#donor-donation-list .status-pending {
+    border-left-color: #ffc107; 
+}
+#donor-donation-list .status-confirmed {
+    border-left-color: var(--secondary-color);
+}
+
+.donor-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.donor-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.edit-btn {
+    color: var(--secondary-color);
+}
+
+.edit-btn:hover {
+    background-color: #c8e6c9;
+}
+
+.delete-btn {
+    color: #f44336; 
+}
+
+.delete-btn:hover {
+    background-color: #ffcdd2;
+}
+
+#donation-list li.placeholder, #donor-list li.placeholder {
+    justify-content: center;
+    color: #888;
+    border-left: 5px solid #ccc;
+}
+
+#donation-list .item {
+    font-weight: 700;
+}
+
+#donation-list .donor {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+#donor-management-area {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+#reports-view h2 {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+#reports-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.report-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.error-message {
+    color: #f44336; 
+    font-size: 0.9rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#monthly-report-content {
+    margin-top: 1.5rem;
+}
+
+#donor-dashboard-area {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+#donor-login-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    text-align: center;
+}
+#donor-login-container hr {
+    margin: 2rem 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+#new-donor-form-login button {
+     width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#new-donor-form-login button:hover {
+    background-color: #fb8c00;
+}
+
+.donation-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+.donation-actions button {
+     padding: 0.5rem 1rem;
+    border: none;
+    color: white;
+    font-weight: 700;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.confirm-btn {
+    background-color: var(--secondary-color);
+}
+.confirm-btn:hover {
+    background-color: #45a049;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+    background-color: #333;
+    color: white;
+}
+
+@media (max-width: 992px) {
+    #donor-management-area, #donor-dashboard-area {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #donation-area, #reports-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-container.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.modal-content {
+    background-color: var(--card-bg-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.modal-container.hidden .modal-content {
+    transform: scale(0.9);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #aaa;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-modal-btn:hover {
+    color: #333;
+}

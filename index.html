@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doação de Alimentos - Doa Fácil</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <section id="login-view" class="view active">
+        <div class="login-container">
+            <img src="logo.png" alt="Logo Doa Fácil" class="login-logo">
+            <h2>Bem-vindo ao Doa Fácil!</h2>
+            <p>Como você gostaria de prosseguir?</p>
+            <div class="login-actions">
+                <button id="go-to-donor" class="role-btn">Sou Doador</button>
+                <button id="go-to-admin" class="role-btn">Sou Administrador</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="app-container" class="hidden">
+        <header>
+            <img src="logo.png" alt="Logo Doa Fácil" id="logo">
+            <h1>Doa Fácil</h1>
+            <nav id="app-nav">
+            </nav>
+            <button id="logout-btn" class="nav-btn">Sair</button>
+        </header>
+
+        <main>
+            <section id="register-view" class="view hidden">
+                <section id="pending-donations-container" class="dashboard-container">
+                     <h3>Doações Pendentes para Aprovação</h3>
+                     <ul id="pending-donation-list">
+                         <li class="placeholder">Nenhuma doação pendente.</li>
+                     </ul>
+                 </section>
+
+                <section id="donation-area">
+                    <div id="form-container">
+                        <h3>Registre uma Doação (Admin)</h3>
+                        <form id="donation-form">
+                            <div class="form-group">
+                                <label for="donor-select">Doador</label>
+                                <select id="donor-select" name="donor-select" required>
+                                    <option value="">Selecione um doador</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="food-item">Item</label>
+                                <select id="food-item" name="food-item" required>
+                                    <option value="">Selecione um item</option>
+                                    <option value="Arroz (kg)">Arroz (kg)</option>
+                                    <option value="Feijão (kg)">Feijão (kg)</option>
+                                    <option value="Leite em Pó (lata)">Leite em Pó (lata)</option>
+                                    <option value="Óleo de Cozinha (litro)">Óleo de Cozinha (litro)</option>
+                                    <option value="Macarrão (pacote)">Macarrão (pacote)</option>
+                                    <option value="Farinha de Trigo (kg)">Farinha de Trigo (kg)</option>
+                                    <option value="Açúcar (kg)">Açúcar (kg)</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Quantidade</label>
+                                <input type="number" id="quantity" name="quantity" placeholder="Ex: 5" required min="1">
+                            </div>
+                            <button type="submit">Adicionar Doação Confirmada</button>
+                        </form>
+                    </div>
+
+                    <div id="dashboard-container">
+                        <h3>Últimas Doações Confirmadas</h3>
+                        <ul id="donation-list">                        
+                            <li class="placeholder">Ainda não há doações registradas.</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <section id="donors-view" class="view hidden">
+                <div id="donor-management-area">
+                    <div id="donor-form-container">
+                        <h3>Cadastrar Novo Doador</h3>
+                        <form id="donor-form">
+                            <div class="form-group">
+                                <label for="donor-name">Nome do Doador</label>
+                                <input type="text" id="donor-name" name="donor-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="donor-contact">Contato (Email ou Telefone)</label>
+                                <input type="text" id="donor-contact" name="donor-contact" placeholder="Opcional">
+                            </div>
+                            <button type="submit">Cadastrar Doador</button>
+                        </form>
+                    </div>
+                    <div id="donor-list-container">
+                        <h3>Doadores Cadastrados</h3>
+                        <ul id="donor-list">
+                            <li class="placeholder">Nenhum doador cadastrado.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="reports-view" class="view hidden">
+                <h2>Relatórios de Doações (Confirmadas)</h2>
+                <div id="reports-container">
+                    <div class="report-card">
+                        <h3>Total de Itens por Categoria</h3>
+                        <canvas id="items-chart"></canvas>
+                    </div>
+                    <div class="report-card">
+                        <h3>Doações ao Longo do Tempo</h3>
+                        <canvas id="timeline-chart"></canvas>
+                    </div>
+                    <div class="report-card full-width">
+                        <h3>Relatório Mensal</h3>
+                        <div class="form-group">
+                            <label for="month-selector">Selecione o Mês</label>
+                            <input type="month" id="month-selector">
+                        </div>
+                        <div id="monthly-report-content">
+                            <p>Selecione um mês para ver o relatório detalhado.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="donor-login-view" class="view hidden">
+                <div id="donor-login-container">
+                    <h3>Identifique-se para Continuar</h3>
+                    <p>Selecione seu nome na lista. Se não estiver cadastrado, adicione um novo doador.</p>
+                    <div class="form-group">
+                         <label for="donor-login-select">Selecione seu nome</label>
+                         <select id="donor-login-select" name="donor-login-select" required>
+                            <option value="">Selecione um doador</option>
+                         </select>
+                    </div>
+                    <button id="donor-login-btn" class="role-btn">Entrar</button>
+                    <hr>
+                    <h4>Não está na lista?</h4>
+                    <form id="new-donor-form-login">
+                        <div class="form-group">
+                            <label for="new-donor-name-login">Seu Nome</label>
+                            <input type="text" id="new-donor-name-login" required>
+                        </div>
+                        <button type="submit">Cadastrar e Entrar</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="donor-dashboard-view" class="view hidden">
+                 <div id="donor-dashboard-area">
+                    <div id="donor-pledge-container">
+                        <h3 id="donor-welcome-title">Fazer uma Doação</h3>
+                         <form id="donor-pledge-form">
+                            <div class="form-group">
+                                <label for="donor-food-item">Item</label>
+                                <select id="donor-food-item" name="food-item" required>
+                                    <option value="">Selecione um item</option>
+                                    <option value="Arroz (kg)">Arroz (kg)</option>
+                                    <option value="Feijão (kg)">Feijão (kg)</option>
+                                    <option value="Leite em Pó (lata)">Leite em Pó (lata)</option>
+                                    <option value="Óleo de Cozinha (litro)">Óleo de Cozinha (litro)</option>
+                                    <option value="Macarrão (pacote)">Macarrão (pacote)</option>
+                                    <option value="Farinha de Trigo (kg)">Farinha de Trigo (kg)</option>
+                                    <option value="Açúcar (kg)">Açúcar (kg)</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="donor-quantity">Quantidade</label>
+                                <input type="number" id="donor-quantity" name="quantity" placeholder="Ex: 5" required min="1">
+                            </div>
+                            <button type="submit">Enviar Doação para Aprovação</button>
+                        </form>
+                    </div>
+                    <div id="donor-history-container">
+                        <h3>Minhas Doações</h3>
+                        <ul id="donor-donation-list">
+                            <li class="placeholder">Você ainda não fez doações.</li>
+                        </ul>
+                    </div>
+                 </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="admin-login-modal" class="modal-container hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn" aria-label="Fechar modal">&times;</button>
+            <h3>Acesso Restrito</h3>
+            <p>Por favor, insira a senha de administrador.</p>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-password">Senha</label>
+                    <input type="password" id="admin-password" name="admin-password" required>
+                </div>
+                <p id="admin-login-error" class="error-message hidden">Senha incorreta. Tente novamente.</p>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="edit-donor-modal" class="modal-container hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn" aria-label="Fechar modal">&times;</button>
+            <h3>Editar Doador</h3>
+            <form id="edit-donor-form">
+                <input type="hidden" id="edit-donor-id">
+                <div class="form-group">
+                    <label for="edit-donor-name">Nome do Doador</label>
+                    <input type="text" id="edit-donor-name" name="edit-donor-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-donor-contact">Contato (Email ou Telefone)</label>
+                    <input type="text" id="edit-donor-contact" name="edit-donor-contact" placeholder="Opcional">
+                </div>
+                <button type="submit">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>Doa Fácil &copy; 2025 - Todos os direitos reservados.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
